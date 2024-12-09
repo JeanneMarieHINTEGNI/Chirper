@@ -26,6 +26,16 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function chirps(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+        $chirpsModel= new Chirp();
+        $chirpsModel->message= $validated["message"];
+        $chirpModel->save();
+        return redirect(route('chirps.store'));
+    }
 
     /**
      * Update the user's profile information.
