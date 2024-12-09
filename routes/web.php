@@ -13,6 +13,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/index', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/chirps', [ProfileController::class, 'chirps'])->name('chirps.store');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
